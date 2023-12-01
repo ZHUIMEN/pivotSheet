@@ -1,0 +1,422 @@
+{
+  "queryOption": {
+    "rows": [
+      {
+        "label": "生产日期",
+        "value": "processDate",
+        "selected": false
+      },
+      {
+        "label": "流水线号",
+        "value": "lineNo",
+        "selected": true
+      }
+    ],
+    "columns": [
+      {
+        "label": "款号",
+        "value": "styleNo",
+        "selected": false
+      },
+      {
+        "label": "制单号",
+        "value": "moNo",
+        "selected": true
+      }
+    ],
+    "values": [
+      {
+        "label": "计划数量",
+        "value": "produceQty",
+        "selected": true
+      },
+      {
+        "label": "挂片数量",
+        "value": "input",
+        "selected": false
+      },
+      {
+        "label": "产出数量",
+        "value": "quantity",
+        "selected": false
+      }
+    ]
+  },
+  "valueInCols": true,
+  "meta": [
+    {
+      "field": "produceQty",
+      "name": "计划数量",
+      "description": "计划数量"
+    },
+    {
+      "field": "input",
+      "name": "挂片数量",
+      "description": "挂片数量"
+    },
+    {
+      "field": "quantity",
+      "name": "产出数量",
+      "description": "产出数量"
+    },
+    {
+      "field": "processDate",
+      "name": "生产日期",
+      "description": "生产日期"
+    },
+    {
+      "field": "lineNo",
+      "name": "流水线号",
+      "description": "流水线号"
+    },
+    {
+      "field": "styleNo",
+      "name": "款号",
+      "description": "款号"
+    },
+    {
+      "field": "moNo",
+      "name": "制单号",
+      "description": "制单号"
+    }
+  ],
+  "totalData": [
+    {
+      "input": 3
+    },
+    {
+      "produceQty": 2050
+    },
+    {
+      "quantity": 0
+    },
+    {
+      "produceQty": 1000,
+      "processDate": "2023-10-27"
+    },
+    {
+      "produceQty": 50,
+      "processDate": "2023-11-07"
+    },
+    {
+      "produceQty": 1000,
+      "processDate": "2023-10-20"
+    },
+    {
+      "input": 1,
+      "processDate": "2023-10-27"
+    },
+    {
+      "input": 1,
+      "processDate": "2023-11-07"
+    },
+    {
+      "input": 1,
+      "processDate": "2023-10-20"
+    },
+    {
+      "quantity": 0,
+      "processDate": "2023-10-27"
+    },
+    {
+      "quantity": 0,
+      "processDate": "2023-11-07"
+    },
+    {
+      "quantity": 0,
+      "processDate": "2023-10-20"
+    },
+    {
+      "produceQty": 2000,
+      "styleNo": "555"
+    },
+    {
+      "produceQty": 50,
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "input": 2,
+      "styleNo": "555"
+    },
+    {
+      "input": 1,
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "quantity": 0,
+      "styleNo": "555"
+    },
+    {
+      "quantity": 0,
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "lineNo": 1,
+      "produceQty": 50,
+      "processDate": "2023-11-07"
+    },
+    {
+      "lineNo": 1,
+      "produceQty": 1000,
+      "processDate": "2023-10-20"
+    },
+    {
+      "lineNo": 1,
+      "produceQty": 1000,
+      "processDate": "2023-10-27"
+    },
+    {
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-11-07"
+    },
+    {
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-10-20"
+    },
+    {
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-10-27"
+    },
+    {
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-11-07"
+    },
+    {
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-10-20"
+    },
+    {
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-10-27"
+    },
+    {
+      "moNo": "555_2",
+      "produceQty": 2000,
+      "styleNo": "555"
+    },
+    {
+      "moNo": "【吊挂】20231107-01",
+      "produceQty": 50,
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "moNo": "555_2",
+      "input": 2,
+      "styleNo": "555"
+    },
+    {
+      "moNo": "【吊挂】20231107-01",
+      "input": 1,
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "moNo": "555_2",
+      "quantity": 0,
+      "styleNo": "555"
+    },
+    {
+      "moNo": "【吊挂】20231107-01",
+      "quantity": 0,
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "produceQty": 1000,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "produceQty": 1000,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "produceQty": 50,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "input": 1,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "input": 1,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "input": 1,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "quantity": 0,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "quantity": 0,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "quantity": 0,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "lineNo": 1,
+      "produceQty": 1000,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "lineNo": 1,
+      "produceQty": 50,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "lineNo": 1,
+      "produceQty": 1000,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "555_2",
+      "lineNo": 1,
+      "produceQty": 1000,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "555_2",
+      "lineNo": 1,
+      "produceQty": 1000,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "【吊挂】20231107-01",
+      "lineNo": 1,
+      "produceQty": 50,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "moNo": "555_2",
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "555_2",
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "【吊挂】20231107-01",
+      "input": 1,
+      "lineNo": 1,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    },
+    {
+      "moNo": "555_2",
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-10-27",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "555_2",
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-10-20",
+      "styleNo": "555"
+    },
+    {
+      "moNo": "【吊挂】20231107-01",
+      "lineNo": 1,
+      "quantity": 0,
+      "processDate": "2023-11-07",
+      "styleNo": "【01】20231107 款号"
+    }
+  ],
+  "rowSubTotalsDimensions": ["processDate"],
+  "colSubTotalsDimensions": ["moNo"],
+  "data": [
+    {
+      "produceQty": 50,
+      "input": 1,
+      "quantity": 0,
+      "processDate": "2023/11/07",
+      "lineNo": 1,
+      "styleNo": "【01】20231107 款号",
+      "moNo": "【吊挂】20231107-01"
+    },
+    {
+      "produceQty": 1000,
+      "input": 1,
+      "quantity": 0,
+      "processDate": "2023/10/27",
+      "lineNo": 1,
+      "styleNo": "555",
+      "moNo": "555_2"
+    },
+    {
+      "produceQty": 1000,
+      "input": 1,
+      "quantity": 0,
+      "processDate": "2023/10/20",
+      "lineNo": 1,
+      "styleNo": "555",
+      "moNo": "555_2"
+    }
+  ]
+}

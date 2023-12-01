@@ -1,0 +1,44 @@
+{
+  "name": "scenograph",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@ant-design/pro-components": "^2.6.42",
+    "@antv/g-base": "~0.4.4",
+    "@antv/s2": "^1.52.0",
+    "@antv/s2-react": "^1.44.2",
+    "antd": "^5.11.1",
+    "dayjs": "^1.11.10",
+    "iframe-resizer": "^4.3.9",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.201",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "add": "^2.0.6",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "less": "^4.2.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
