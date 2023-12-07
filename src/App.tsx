@@ -174,8 +174,13 @@ const App = () => {
           customSheetRef.current?.exportFunc()
         }
 
-        // if ('parentIFrame' in window) window.parentIFrame.sendMessage('Hello from the iFrame');
       },
+      onReady(e){
+        // if ('parentIFrame' in window) window.parentIFrame.sendMessage('Hello from the iFrame');
+        console.log('===========子页面的=onReady加载了========================');
+        console.log(e);
+        console.log('====================================');
+      }
     }
   }, [])
 

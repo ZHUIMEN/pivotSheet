@@ -1,6 +1,6 @@
 // 多选 Select 组件
 import { Select as AntdSelect } from 'antd';
-import { map,filter,cloneDeep } from 'lodash';
+import {filter,map } from 'lodash';
 import { BaseComponent } from '../base';
 import './index.less';
 

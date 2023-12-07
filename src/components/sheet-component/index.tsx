@@ -69,6 +69,7 @@ const getImportDataCfg = (sheetConfig,sheetType) => {
 export const CustomSheet = forwardRef(
   (props:Props,ref: React.MutableRefObject<any>) => {
     const [sheetType, setSheetType] = React.useState<SheetType>('pivot');
+    // const [loading, setLoading] = React.useState<boolean>(true);
     const [dataCfg, setDataCfg] = React.useState<S2DataConfig>();
     const [options, setOptions] = React.useState<SheetComponentOptions>();
     const [themeCfg, setThemeCfg] = React.useState<ThemeCfg>({
@@ -98,10 +99,9 @@ export const CustomSheet = forwardRef(
     }, [sheetConfig?.sheetType]);
   
     useEffect(() => {
-      console.log('更新1',sheetConfig)
       const dataCfg = getExampleDataCfg(sheetConfig,sheetType);
-      console.log('更新',dataCfg)
       setDataCfg(dataCfg);
+      // setLoading(false);
     }, [sheetConfig?.rows, sheetConfig?.columns, sheetConfig?.values]);
   
     useEffect(() => {
@@ -232,13 +232,14 @@ export const CustomSheet = forwardRef(
     return (
       <div className="sheet-container" ref={containerRef}>
         <SheetComponent
-        
+        //  onAfterRender={()=>setLoading(false)}
           ref={sheetRef}
           // header={{ exportCfg: { open: true } }}
           dataCfg={dataCfg}
           options={{...options,interaction:{overscrollBehavior:'none'}}}
           themeCfg={themeCfg}
           sheetType={sheetType}
+          // loading={loading}
           adaptive={adaptive}
           showPagination={showPagination}
     
