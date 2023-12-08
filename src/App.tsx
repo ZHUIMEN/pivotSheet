@@ -3,7 +3,7 @@ import { CustomSheet } from "./components/sheet-component/index"
 import { useRef, useLayoutEffect, useState } from "react"
 import { ConfigPanel } from "./components/config-panel"
 import { AttributeComponentProps } from "./components/config-panel/types"
-import { map,filter } from "lodash"
+import {  filter } from "lodash"
 
 declare global {
   interface Window {
@@ -26,24 +26,21 @@ const config: AttributeComponentProps = {
           displayName: "行头",
           attributeId: "rows",
           placeholder: "请选择行头数据",
-          options: [
-          ],
+          options: [],
         },
         {
           type: "select",
           displayName: "列头",
           attributeId: "columns",
           placeholder: "请选择列头数据",
-          options: [
-          ],
+          options: [],
         },
         {
           type: "select",
           displayName: "数值",
           attributeId: "values",
           placeholder: "请选择数值数据",
-          options: [
-          ],
+          options: [],
         },
         {
           type: "radio",
@@ -119,8 +116,7 @@ const config: AttributeComponentProps = {
 const App = () => {
   const [showTools, setShowTools] = useState(false)
   const customSheetRef = useRef<any>()
-  const [toolsConfig, setToolsConfig] =
-    useState<AttributeComponentProps>()
+  const [toolsConfig, setToolsConfig] = useState<AttributeComponentProps>()
   const [customConfig, setCustomConfig] = useState({
     // ...sheetDataCfg.fields,
     ...{ adaptive: true },
@@ -132,13 +128,20 @@ const App = () => {
         // const data = JSON.parse(e)
         console.log("setShowTools=>", e)
         if (e.type === "data") {
-          const result = e.data?.queryOption;
-          const rows = filter(result.rows,option=>option.selected).map(e=>e.value)
-          const columns = filter(result.columns,option=>option.selected).map(e=>e.value)
-          const values = filter(result.values,option=>option.selected).map(e=>e.value)
+          const result = e.data?.queryOption
+          const rows = filter(result.rows, (option) => option.selected).map(
+            (e) => e.value
+          )
+          const columns = filter(
+            result.columns,
+            (option) => option.selected
+          ).map((e) => e.value)
+          const values = filter(result.values, (option) => option.selected).map(
+            (e) => e.value
+          )
           setToolsConfig(() => {
             const oldVal = config
-             oldVal.children?.[0].children.splice(
+            oldVal.children?.[0].children.splice(
               0,
               3,
               {
@@ -146,41 +149,51 @@ const App = () => {
                 displayName: "行头",
                 attributeId: "rows",
                 placeholder: "请选择行头数据",
-                options:e.data?.queryOption.rows
+                options: e.data?.queryOption.rows,
               },
               {
                 type: "select",
                 displayName: "列头",
                 attributeId: "columns",
                 placeholder: "请选择列头数据",
-                options:e.data?.queryOption.columns
+                options: e.data?.queryOption.columns,
               },
               {
                 type: "select",
                 displayName: "数值",
                 attributeId: "values",
                 placeholder: "请选择数值数据",
-                options:e.data?.queryOption.values
-              },
+                options: e.data?.queryOption.values,
+              }
             )
             return oldVal
           })
-          setCustomConfig(() => {
-            return { ...e.data,rows,columns, values, adaptive: true }
+          setCustomConfig((custom) => {
+            console.log("customConfig=>", custom)
+            // 合并custom里的rows，columns，values
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            const {rows:_rows,columns:_columns,values:_values} = custom
+            if (_rows?.length>=0 || _columns?.length>=0 || _values?.length>=0) {
+              console.log('=============搜索时的条件=======================');
+              return {...e.data ,rows:_rows, values:_values, columns:_columns, adaptive: true}
+            }else{
+              console.log('=============第一次加载=======================');
+              return { ...e.data, rows, columns, values, adaptive: true }
+            }
           })
         } else if (e.type === "showTools") {
           setShowTools(e.data)
         } else if (e.type === "export") {
           customSheetRef.current?.exportFunc()
         }
-
       },
-      onReady(e){
+      onReady(e) {
         // if ('parentIFrame' in window) window.parentIFrame.sendMessage('Hello from the iFrame');
-        console.log('===========子页面的=onReady加载了========================');
-        console.log(e);
-        console.log('====================================');
-      }
+        console.log("===========子页面的=onReady加载了========================")
+        console.log(e)
+        console.log("====================================")
+      },
     }
   }, [])
 
@@ -198,12 +211,13 @@ const App = () => {
           showTools ? "min-h-[118px]" : "h-0 "
         }`}
       >
-      {toolsConfig&&  <ConfigPanel
-          attributes={customConfig}
-          onConfigChange={onConfigChange}
-          configToken={toolsConfig}
-        />}
-       
+        {toolsConfig && (
+          <ConfigPanel
+            attributes={customConfig}
+            onConfigChange={onConfigChange}
+            configToken={toolsConfig}
+          />
+        )}
       </div>
       <CustomSheet sheetConfig={customConfig} ref={customSheetRef} />
     </div>
