@@ -1,0 +1,107 @@
+:deep(.ant-radio-group .ant-radio-group-outline span, span.ant-radio + *) {
+  color: #606266;
+}
+.sheet {
+  display: flex;
+  position: relative;
+  border-top: 1px solid #eaeaea;
+  flex: 1;
+
+  &-value {
+    min-height: 300px;
+    width: 228px;
+    padding: 20px;
+    padding-left: 0;
+    border-right: 1px solid #eaeaea;
+    margin-right: 20px;
+    // overflow: hidden;
+    // overflow-y: auto;
+    position: relative;
+    &-folded {
+      width: 0;
+      overflow: hidden;
+      padding: 0;
+    //   border: none;
+    }
+    &-folded + .sheet-box {
+      width: 100%;
+    }
+
+    &-draggable {
+      transition: all 0.3s;
+      height: auto;
+      opacity: 1;
+    }
+    &-draggable-folded {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+    &-draggable-folded + div > .anticon {
+      transform: rotate(0deg);
+    }
+
+    &-label {
+      &:has(~ .sheet-value-draggable-folded) {
+        .anticon {
+          transform: rotate(0deg);
+        }
+      }
+      & .anticon {
+        color: #bcbcbc;
+        transform-origin: center;
+        transform: rotate(90deg);
+      }
+      display: flex;
+      position: sticky;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    &-hr {
+      width: calc(100% - 70px);
+
+      height: 1px;
+      background: #e8e8e8;
+      margin: 0 auto;
+    }
+  }
+  &-box {
+    width: calc(100% - 200px - 40px);
+    position: relative;
+    &-folded-btn {
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.09);
+      position: absolute;
+      top: 20px;
+      left: -30px;
+      text-align: center;
+      line-height: 24px;
+      &:hover {
+        cursor: pointer;
+        color: #3e8ff7;
+      }
+    }
+  }
+  &-tools-top {
+    height: 80px;
+    display: flex;
+    justify-items: space-between;
+    align-items: center;
+    &-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 1;
+      gap: 16px;
+    }
+    &-item {
+      span {
+        margin-right: 10px;
+      }
+    }
+  }
+}

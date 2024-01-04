@@ -1,0 +1,31 @@
+{
+  "name": "jack-ui-sheet",
+  "private": false,
+  "version": "0.0.5",
+  "author": "崔健 <cj@cuijiajun.top>",
+  "files": [
+    "lib"
+  ],
+  "main": "/lib/jack-ui.js",
+  "module": "/lib/jack-ui.es.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "publish:npm": "npm run build && npm publish --access public"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "@antv/s2": "^1.53.0",
+    "@antv/s2-vue": "^1.5.0",
+    "ant-design-vue": "3.2.9",
+    "lodash": "^4.17.21",
+    "vuedraggable": "^4.1.0",
+    "less": "^4.2.0",
+    "vue": "3.2.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "vite": "^5.0.8"
+  }
+}
