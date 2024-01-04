@@ -5,12 +5,14 @@
     :sheetType="props.sheetType"
     :dataCfg="dataCfg"
     :options="defaultOption"
+    :themeCfg="themeCfg"
     :adaptive="true"
   />
 </template>
 <script setup>
 import "@antv/s2-vue/dist/style.min.css"
 import {
+  ref,
   shallowRef,
   watch,
   reactive,
@@ -24,6 +26,57 @@ import {
   EXTRA_FIELD,
 } from "@antv/s2"
 import { concat } from "lodash"
+const themeCfg = ref({
+  theme: {
+    cell:{
+      subtotal: {
+        backgroundColor: "#f0f0f0",
+        color: "#000",
+      },
+      total: {
+        backgroundColor: "#d9d9d9",
+        color: "#000",
+      },
+    },
+    background: {
+      color: "#fff",
+    },
+    colCell: {
+      cell: {
+        crossBackgroundColor: "#F6F6F7",
+        backgroundColor: "#F6F6F7",
+      },
+      subtotal: {
+        backgroundColor: "#f0f0f0",
+        color: "#000",
+      },
+      total: {
+        backgroundColor: "#d9d9d9",
+        color: "#000",
+      },
+    },
+    cornerCell: {
+      cell: {
+        crossBackgroundColor: "#F6F6F7",
+        backgroundColor: "#F6F6F7",
+      },
+    },
+    dataCell: {
+      cell: {
+        crossBackgroundColor: "#fff",
+        backgroundColor: "#fff",
+      },
+    },
+    rowCell: {
+      //行头
+      cell: {
+        crossBackgroundColor: "#fff",
+        backgroundColor: "#fff",
+      },
+    },
+  },
+  name: "gray",
+})
 const calcFunc = (query, data) => {
   //  如果是返工率，就是返工数总/生产数总
   if (query[EXTRA_FIELD] === "reworkRate") {
