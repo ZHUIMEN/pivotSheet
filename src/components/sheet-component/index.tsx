@@ -45,46 +45,7 @@ const getExampleDataCfg = (sheetConfig, sheetType) => {
   }
   return { ...sheetConfig, fields: tableFields }
 }
-
-const getImportDataCfg = (sheetConfig, sheetType) => {
-  const { importData, valueLocation } = sheetConfig
-  const { fields } = importData
-  const pivotFields = {
-    ...fields,
-    valueInCols: valueLocation && valueLocation === "column",
-  }
-  const { rows, columns, values } = fields
-  const tableFields = {
-    columns: concat([], rows || [], columns || [], values || []),
-  }
-  if (sheetType === "pivot") {
-    return { ...importData, fields: pivotFields }
-  }
-  return { ...importData, fields: tableFields }
-}
 const calcFunc = (query, data) => {
-  //   {
-  //     "produceQty": 100,
-  //     "input": 5,
-  //     "quantity": 4,
-  //     "reworkQty": 4,
-  //     "reworkRate": 100.00,
-  //     "processDate": "2023-12-06",
-  //     "section": "吊挂",
-  //     "lineNo": 7,
-  //     "styleNo": "透视屏数据A款",
-  //     "name": "透视屏数据A款",
-  //     "moNo": "透视屏数据A款_1",
-  //     "scheduleNo": "10",
-  //     "color": "透视屏数据A款",
-  //     "size": "透视屏数据A款",
-  //     "poNo": "透视屏数据A款",
-  //     "lot": "透视屏数据A款",
-  //     "cutNo": "透视屏数据A款"
-  // },
-  // console.log('=======query, data=============================');
-  // console.log(query, data);
-  // console.log('====================================');
   //  如果是返工率，就是返工数总/生产数总
   if (query[EXTRA_FIELD] === "reworkRate") {
     console.log(query, data,'=====================')
@@ -152,24 +113,6 @@ export const CustomSheet = forwardRef(
       sheetConfig.data,
     ])
 
-    useEffect(() => {
-      if (
-        isEmpty(sheetConfig?.dataSource) ||
-        sheetConfig?.dataSource === "exampleData" ||
-        isEmpty(sheetConfig?.importData)
-      ) {
-        const dataCfg = getExampleDataCfg(sheetConfig, sheetType)
-        setDataCfg(dataCfg)
-      } else if (!isEmpty(sheetConfig?.importData)) {
-        const dataCfg = getImportDataCfg(sheetConfig, sheetType)
-        setDataCfg(dataCfg)
-      }
-    }, [
-      sheetConfig?.importData,
-      sheetConfig?.dataSource,
-      sheetConfig?.valueLocation,
-      sheetType,
-    ])
 
     useEffect(() => {
       const {

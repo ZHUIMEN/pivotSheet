@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect, useState } from "react"
 import { ConfigPanel } from "./components/config-panel"
 import { AttributeComponentProps } from "./components/config-panel/types"
 import {  filter } from "lodash"
+import MyWebComponent from "./components/sheet-component/webComponent"
 
 declare global {
   interface Window {
@@ -219,6 +220,9 @@ const App = () => {
           />
         )}
       </div>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore */}
+       {/* <MyWebComponent /> */}
       <CustomSheet sheetConfig={customConfig} ref={customSheetRef} />
     </div>
   )
