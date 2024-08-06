@@ -78,6 +78,7 @@ const themeCfg = ref({
   name: "gray",
 })
 const calcFunc = (query, data) => {
+  // console.log(query,data)
   //  如果是返工率，就是返工数总/生产数总
   if (query[EXTRA_FIELD] === "reworkRate") {
     const reworkQtySum = data.reduce((pre, next) => {
@@ -123,10 +124,10 @@ const props = defineProps({
     type: Object,
     default: () => {
       return {
-        rowGrandTotals: false,
-        rowSubTotals: false,
-        columnGrandTotals: false,
-        columnSubTotals: false,
+        rowGrandTotals: true,
+        rowSubTotals: true,
+        columnGrandTotals: true,
+        columnSubTotals: true,
       }
     },
   },
@@ -150,6 +151,7 @@ const defaultOption = reactive({
       showSubTotals: props.toolsOptions.rowSubTotals,
       reverseLayout: true,
       reverseSubLayout: true,
+      totalsGroupDimensions:props.data.rowTotalsGroupDimensions,
       subTotalsDimensions: props.data.rowSubTotalsDimensions,
       calcTotals: {
         calcFunc,
@@ -164,6 +166,7 @@ const defaultOption = reactive({
       showSubTotals: props.toolsOptions.columnSubTotals,
       reverseLayout: true,
       reverseSubLayout: true,
+      totalsGroupDimensions:props.data.colTotalsGroupDimensions,
       subTotalsDimensions: props.data.colSubTotalsDimensions,
       calcTotals: {
         calcFunc,
@@ -227,5 +230,5 @@ watch(
   { deep: true }
 )
 
-defineExpose({ exportFunc })
+defineExpose({ exportFunc,s2 })
 </script>

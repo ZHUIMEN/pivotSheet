@@ -1,9 +1,13 @@
 <template>
   <div class="card-out-container" style="overflow: hidden">
+    <button @click="test()">9999</button>
     <div class="custom-table">
       <slot name="operate" :data="handleExportData"> </slot>
       <div class="sheet">
-        <div class="sheet-value" :class="[{'sheet-value-folded':foldList?.[3]}]">
+        <div
+          class="sheet-value"
+          :class="[{ 'sheet-value-folded': foldList?.[3] }]"
+        >
           <div>
             <div>
               <div class="sheet-value-label">
@@ -75,9 +79,9 @@
         </div>
         <div class="sheet-box">
           <div class="sheet-box-folded-btn">
-              <DoubleLeftOutlined @click="handleFold(3)" v-if="!foldList?.[3]" />
-              <DoubleRightOutlined @click="handleFold(3)" v-else />
-            </div>
+            <DoubleLeftOutlined @click="handleFold(3)" v-if="!foldList?.[3]" />
+            <DoubleRightOutlined @click="handleFold(3)" v-else />
+          </div>
           <div class="sheet-tools-top">
             <RadioGroup
               v-model:value="sheetType"
@@ -102,15 +106,11 @@
               </div>
               <div class="sheet-tools-top-item">
                 <span>行小记</span>
-                <Switch
-                  v-model:checked="tooltipOption.rowSubTotals"
-                ></Switch>
+                <Switch v-model:checked="tooltipOption.rowSubTotals"></Switch>
               </div>
               <div class="sheet-tools-top-item">
                 <span>行总结</span>
-                <Switch
-                  v-model:checked="tooltipOption.rowGrandTotals"
-                ></Switch>
+                <Switch v-model:checked="tooltipOption.rowGrandTotals"></Switch>
               </div>
             </div>
           </div>
@@ -127,12 +127,13 @@
 </template>
 
 <script>
-import MySheetComponent from "./MySheetComponent.vue"
-import SheetDraggable from "./SheetDraggable.vue"
-import { DoubleRightOutlined, DoubleLeftOutlined } from "@ant-design/icons-vue"
-import { filter } from "lodash"
-import { toRaw } from "vue"
-import { Switch,RadioGroup,Radio,RadioButton} from 'ant-design-vue';
+import MySheetComponent from "./MySheetComponent.vue";
+import SheetDraggable from "./SheetDraggable.vue";
+import { DoubleRightOutlined, DoubleLeftOutlined } from "@ant-design/icons-vue";
+import { filter, groupBy, mapValues, sumBy } from "lodash";
+import { toRaw } from "vue";
+import { Switch, RadioGroup, Radio, RadioButton } from "ant-design-vue";
+import { S2Event } from "@antv/s2";
 export default {
   name: "pivot-sheet",
 
@@ -173,24 +174,33 @@ export default {
           valueInCols: true,
         },
         data: [],
+        totalData:[],
       },
-    }
+    };
   },
   components: {
     SheetDraggable,
     MySheetComponent,
     DoubleRightOutlined,
     DoubleLeftOutlined,
-    Switch,RadioGroup,Radio,RadioButton
+    Switch,
+    RadioGroup,
+    Radio,
+    RadioButton,
   },
-   watch: {
+  watch: {
     baseData: {
       handler(newVal, _oldVal) {
-        const { queryOption: result, ...Other } = newVal
+        const { queryOption: result, ...Other } = newVal;
 
-        const { rows, columns, values, valueInCols } = this.getFields(result)
-        if(this.dataCfg.fields.rows.length<=0||this.dataCfg.fields.columns.length<=0||this.dataCfg.fields.values.length<=0){
-          this.queryOption = result
+        const { rows, columns, values, valueInCols } = this.getFields(result);
+        if (
+          this.dataCfg.fields.rows.length <= 0 ||
+          this.dataCfg.fields.columns.length <= 0 ||
+          this.dataCfg.fields.values.length <= 0
+        ) {
+          this.queryOption = result;
+
           this.dataCfg = {
             fields: {
               rows,
@@ -199,50 +209,79 @@ export default {
               valueInCols,
             },
             ...Other,
-          }
-        }else{
-          this.dataCfg.data = Other.data
+          };
+        } else {
+          this.dataCfg.data = Other.data;
         }
-       
       },
     },
     queryOption: {
       handler(newVal, _oldVal) {
-        this.dataCfg.fields = this.getFields(toRaw(newVal))
+        var old = this.getFields(toRaw(newVal));
+        const finalResult = this.groupAndSum(
+          this.dataCfg.data,
+          [...old.rows, ...old.columns],
+          old.values
+        );
+        this.dataCfg.totalData = finalResult
+        this.dataCfg.fields = old;
       },
       deep: true,
     },
   },
   methods: {
-    handleExportData(name="透视图") {
-      this.$refs.sheetComp.exportFunc(name)
+    groupAndSum(data, groupByDimensions, sumFields) {
+      // 使用 groupBy 进行分组
+      const groupedData = groupBy(data, (item) =>
+        groupByDimensions.map((dim) => item[dim]).join("|")
+      );
+
+      // 对分组后的数据进行汇总计算
+      const result = mapValues(groupedData, (group) => {
+        const firstItem = group[0];
+        const resultItem = {};
+        groupByDimensions.forEach((dim) => {
+          resultItem[dim] = firstItem[dim];
+        });
+        sumFields.forEach((field) => {
+          resultItem[field] = sumBy(group, field);
+        });
+        return resultItem;
+      });
+
+      // 将结果转换为数组
+      return Object.values(result);
+    },
+
+    handleExportData(name = "透视图") {
+      this.$refs.sheetComp.exportFunc(name);
     },
     handleFold(index) {
-      console.log("index", index)
+      
 
-      this.foldList[index] = !this.foldList[index]
+      this.foldList[index] = !this.foldList[index];
     },
     getFields(fields) {
       const rows = filter(fields?.rows ?? [], (option) => option.selected).map(
         (e) => e.value
-      )
+      );
       const columns = filter(
         fields?.columns ?? [],
         (option) => option.selected
-      ).map((e) => e.value)
+      ).map((e) => e.value);
       const values = filter(
         fields?.values ?? [],
         (option) => option.selected
-      ).map((e) => e.value)
+      ).map((e) => e.value);
       return {
         rows,
         columns,
         values,
         valueInCols: fields?.valueInCols ?? this.dataCfg.fields.valueInCols,
-      }
+      };
     },
   },
-}
+};
 </script>
 
 <style scoped lang="less">
