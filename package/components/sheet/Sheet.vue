@@ -1,6 +1,5 @@
 <template>
   <div class="card-out-container" style="overflow: hidden">
-    <button @click="test()">9999</button>
     <div class="custom-table">
       <slot name="operate" :data="handleExportData"> </slot>
       <div class="sheet">
@@ -192,7 +191,6 @@ export default {
     baseData: {
       handler(newVal, _oldVal) {
         const { queryOption: result, ...Other } = newVal;
-
         const { rows, columns, values, valueInCols } = this.getFields(result);
         if (
           this.dataCfg.fields.rows.length <= 0 ||
@@ -200,7 +198,6 @@ export default {
           this.dataCfg.fields.values.length <= 0
         ) {
           this.queryOption = result;
-
           this.dataCfg = {
             fields: {
               rows,
@@ -212,6 +209,7 @@ export default {
           };
         } else {
           this.dataCfg.data = Other.data;
+          this.dataCfg.totalData = []
         }
       },
     },

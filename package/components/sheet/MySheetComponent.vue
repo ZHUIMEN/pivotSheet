@@ -78,7 +78,7 @@ const themeCfg = ref({
   name: "gray",
 })
 const calcFunc = (query, data) => {
-  // console.log(query,data)
+  // 
   //  如果是返工率，就是返工数总/生产数总
   if (query[EXTRA_FIELD] === "reworkRate") {
     const reworkQtySum = data.reduce((pre, next) => {
@@ -201,7 +201,7 @@ const dataCfg = computed(() => {
 })
 
 const exportFunc = (nameFile) => {
-  const data = copyData(s2.value.instance, ",", false)
+  const data = copyData(s2.value.instance, ",", true)
   download(data, nameFile ?? "jack透视图")
 }
 
