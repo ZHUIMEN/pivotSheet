@@ -3,7 +3,7 @@
       <button @click="test">
         test
       </button>
-    <Sheet :baseData="baseData" ref="sheet"></Sheet>
+    <Sheet :baseData="baseData" ref="sheet" :i18n="$i18n"></Sheet>
     </div>
 
 
@@ -12,6 +12,7 @@
 import 'ant-design-vue/dist/antd.css';
 import Sheet from '../package/components/sheet/Sheet.vue';
 import {ref,onMounted} from 'vue';
+// import i18n from './i18n';
 const  baseData = ref({})
 const sheet = ref(null);
 

@@ -10,7 +10,7 @@
           <div>
             <div>
               <div class="sheet-value-label">
-                行头
+                {{ $t('yourOutfit') }}
                 <div class="sheet-value-hr"></div>
                 <DoubleRightOutlined @click="handleFold(0)" />
               </div>
@@ -28,7 +28,7 @@
 
             <div class="mt-10">
               <div class="sheet-value-label">
-                列头
+                {{ $t('columnHead') }}
                 <div class="sheet-value-hr"></div>
                 <DoubleRightOutlined @click="handleFold(1)" />
               </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="mt-10">
               <div class="sheet-value-label">
-                数值
+              {{ $t('numericalValue') }}
                 <div class="sheet-value-hr"></div>
                 <DoubleRightOutlined @click="handleFold(2)" />
               </div>
@@ -56,7 +56,7 @@
                 ]"
               >
                 <div style="font-weight: 400; color: #606266">
-                  置于
+                  {{$t('put')}}
                   <RadioGroup
                     v-model:value="dataCfg.fields.valueInCols"
                     :style="{
@@ -65,8 +65,8 @@
                       color: '#606266',
                     }"
                   >
-                    <Radio :value="true">行头</Radio>
-                    <Radio :value="false">列头</Radio>
+                    <Radio :value="true">{{ $t("yourOutfit") }}</Radio>
+                    <Radio :value="false">  {{ $t('columnHead') }}</Radio>
                   </RadioGroup>
                 </div>
                 <sheet-draggable
@@ -86,29 +86,29 @@
               v-model:value="sheetType"
               :style="{ marginBottom: '8px' }"
             >
-              <Radio-button value="pivot">透视图</Radio-button>
-              <Radio-button value="table">明细图</Radio-button>
+              <Radio-button value="pivot">{{ $t('perspectiveView') }}</Radio-button>
+              <Radio-button value="table">{{ $t('detailedDiagram') }}</Radio-button>
             </RadioGroup>
 
             <div class="sheet-tools-top-right">
               <div class="sheet-tools-top-item">
-                <span>列小记</span>
+                <span>{{ $t('listTheNotes') }}</span>
                 <Switch
                   v-model:checked="tooltipOption.columnSubTotals"
                 ></Switch>
               </div>
               <div class="sheet-tools-top-item">
-                <span>列总结</span>
+                <span>{{$t('columnSummary')}}</span>
                 <Switch
                   v-model:checked="tooltipOption.columnGrandTotals"
                 ></Switch>
               </div>
               <div class="sheet-tools-top-item">
-                <span>行小记</span>
+                <span>{{ $t('xingxiaoji') }}</span>
                 <Switch v-model:checked="tooltipOption.rowSubTotals"></Switch>
               </div>
               <div class="sheet-tools-top-item">
-                <span>行总结</span>
+                <span>{{ $t('summary') }}</span>
                 <Switch v-model:checked="tooltipOption.rowGrandTotals"></Switch>
               </div>
             </div>
@@ -132,11 +132,15 @@ import { DoubleRightOutlined, DoubleLeftOutlined } from "@ant-design/icons-vue";
 import { filter, groupBy, mapValues, sumBy } from "lodash";
 import { toRaw } from "vue";
 import { Switch, RadioGroup, Radio, RadioButton } from "ant-design-vue";
-import { S2Event } from "@antv/s2";
+import { S2Event,setLang } from "@antv/s2";
 export default {
   name: "pivot-sheet",
 
   props: {
+    i18n: {
+      type: Object,
+      default: () => ({}),
+    },
     baseData: {
       type: Object,
       default: () => ({
@@ -279,6 +283,15 @@ export default {
       };
     },
   },
+  created() {
+    console.log('=============this.i18n=======================');
+    console.log(this.i18n.locale);
+    console.log('====================================');
+    if(this.i18n.locale !=='zh_CN'){
+
+      setLang('en_US')
+    }
+  }
 };
 </script>
 

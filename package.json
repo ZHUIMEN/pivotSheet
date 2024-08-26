@@ -1,7 +1,7 @@
 {
   "name": "jack-ui-sheet",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "崔健 <cj@cuijiajun.top>",
   "files": [
     "lib"
@@ -15,6 +15,7 @@
     "publish:npm": "npm run build && npm publish --access public"
   },
   "dependencies": {
+    "vue-i18n": "^9.1.10",
     "@ant-design/icons-vue": "^6.1.0",
     "@antv/s2": "^1.53.0",
     "@antv/s2-vue": "^1.5.0",

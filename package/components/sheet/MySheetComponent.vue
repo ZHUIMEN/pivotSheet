@@ -18,14 +18,16 @@ import {
   reactive,
   computed,
   defineExpose,
+  onMounted,
 } from "vue"
-import { SheetComponent } from "@antv/s2-vue"
+import { SheetComponent  } from "@antv/s2-vue"
 import {
   download,
   copyData,
   EXTRA_FIELD,
 } from "@antv/s2"
 import { concat } from "lodash"
+
 const themeCfg = ref({
   theme: {
     cell:{
@@ -202,7 +204,7 @@ const dataCfg = computed(() => {
 
 const exportFunc = (nameFile) => {
   const data = copyData(s2.value.instance, ",", true)
-  download(data, nameFile ?? "jack透视图")
+  download(data, nameFile ?? "jack")
 }
 
 watch(
@@ -229,6 +231,8 @@ watch(
   },
   { deep: true }
 )
+
+
 
 defineExpose({ exportFunc,s2 })
 </script>
