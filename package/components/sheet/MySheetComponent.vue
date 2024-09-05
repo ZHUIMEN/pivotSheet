@@ -6,7 +6,7 @@
     :dataCfg="dataCfg"
     :options="defaultOption"
     :themeCfg="themeCfg"
-    :adaptive="true"
+    :adaptive="adaptive"
   />
 </template>
 <script setup>
@@ -27,7 +27,11 @@ import {
   EXTRA_FIELD,
 } from "@antv/s2"
 import { concat } from "lodash"
-
+const adaptive = {
+  width: true,
+  height: "100%",
+  getContainer: () => document.getElementById('containerId'),
+};
 const themeCfg = ref({
   theme: {
     cell:{
@@ -138,6 +142,7 @@ const props = defineProps({
 const defaultOption = reactive({
   style: {
     hierarchyCollapse: false,
+    layoutWidthType:'compact',
   },
   tooltip: {
     operation: {

@@ -6,7 +6,8 @@
   position: relative;
   border-top: 1px solid #eaeaea;
   flex: 1;
-
+  // height: 100%;
+ 
   &-value {
     min-height: 300px;
     width: 228px;
@@ -60,15 +61,17 @@
     }
     &-hr {
       width: calc(100% - 70px);
-
-      height: 1px;
       background: #e8e8e8;
       margin: 0 auto;
     }
   }
   &-box {
     width: calc(100% - 200px - 40px);
+    height: calc(100% - 80px);
     position: relative;
+    &-h{
+      height:calc(100% - 80px) ;
+    }
     &-folded-btn {
       border-radius: 50%;
       width: 24px;

@@ -1,5 +1,5 @@
 <template>
-    <div style="margin: 25px">
+    <div style="padding: 25px;height:100vh">
       <button @click="test">
         test
       </button>

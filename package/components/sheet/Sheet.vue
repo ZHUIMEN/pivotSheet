@@ -1,5 +1,5 @@
 <template>
-  <div class="card-out-container" style="overflow: hidden">
+
     <div class="custom-table">
       <slot name="operate" :data="handleExportData"> </slot>
       <div class="sheet">
@@ -76,7 +76,7 @@
             </div>
           </div>
         </div>
-        <div class="sheet-box">
+        <div class="sheet-box" >
           <div class="sheet-box-folded-btn">
             <DoubleLeftOutlined @click="handleFold(3)" v-if="!foldList?.[3]" />
             <DoubleRightOutlined @click="handleFold(3)" v-else />
@@ -113,16 +113,18 @@
               </div>
             </div>
           </div>
-          <mySheetComponent
+          <div id='containerId' class="sheet-box-h">
+            <mySheetComponent
             :data="dataCfg"
             :sheetType="sheetType"
             :toolsOptions="tooltipOption"
             ref="sheetComp"
           />
+          </div>
+       
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -299,5 +301,10 @@ export default {
 @import "./index.less";
 :deep(.ant-radio-group .ant-radio-group-outline span, span.ant-radio + *) {
   color: #606266;
+}
+
+.custom-table{
+  height: 100%;
+  overflow: hidden;
 }
 </style>
