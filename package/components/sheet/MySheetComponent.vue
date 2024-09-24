@@ -150,7 +150,7 @@ const props = defineProps({
 const defaultOption = reactive({
   style: {
     hierarchyCollapse: false,
-    layoutWidthType:'compact',
+    // layoutWidthType:'compact',
   },
   tooltip: {
     operation: {
