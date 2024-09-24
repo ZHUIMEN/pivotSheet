@@ -164,7 +164,7 @@ export default {
         values: [],
       },
 
-      sheetType: "pivot",
+      sheetType: "editable",
       tooltipOption: {
         rowGrandTotals: false,
         rowSubTotals: false,

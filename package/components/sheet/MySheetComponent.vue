@@ -68,6 +68,14 @@ const themeCfg = ref({
       },
     },
     dataCell: {
+      bolderText: {
+        textAlign: 'center',
+        textBaseline: 'middle',
+      },
+      text: {
+        textAlign: 'center',
+        textBaseline: 'middle',
+      },
       cell: {
         crossBackgroundColor: "#fff",
         backgroundColor: "#fff",
